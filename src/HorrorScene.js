@@ -7,11 +7,21 @@ export default class HorrorScene extends Phaser.Scene {
 
   init(){
     let wallsMap = undefined;
+    this.speed = 50
+    this.player = undefined;
+    this.ArrowUp = undefined;
+    this.ArrowDown = undefined;
+    this.ArrowLeft = undefined;
+    this.ArrowRight = undefined;
   }
 
   preload() {
     this.load.image('floor', '/images/floor.png')
     this.load.image('wall', '/images/wall.png')
+    this.load.spritesheet('player', 'images/player.png', {
+      frameWidth: 64,
+      frameHeight: 64,
+      })
   }
 
   create() {
@@ -35,9 +45,58 @@ export default class HorrorScene extends Phaser.Scene {
     this.solution = mymaze.getRoute(mazeMap,0,1,mapWidth - 1,mapHeight - 3);
     // Display the maze map
     this.renderTiles(x, y, mazeMap, TILESIZE); 
+
+    //player
+    this.player=this.physics.add.sprite(25, 80, 'player')
+
+
+    this.anims.create({
+      key:'left',
+      frames :this.anims.generateFrameNumbers
+              ('player', {start:56, end:61}),
+      frameRate:20,
+      repeat:-1
+    });
+    this.anims.create({
+      key: 'up',
+      frames: this.anims.generateFrameNumbers
+      ('player', {start:40, end:45}),
+      frameRate:20,
+      repeat: -1
+    });
+    this.anims.create({
+      key: 'down',
+      frames: this.anims.generateFrameNumbers
+      ('player', {start:32, end:37}),
+      frameRate:20,
+      repeat: -1
+    })
+    this.anims.create({
+      key: 'right',
+      frames: this.anims.generateFrameNumbers('player', {start:48, end:52}),
+      frameRate:20,
+      repeat:-1
+    });
   }
 
   update() {
+    //arrowkey
+    if (this.ArrowLeft.left.isDown) {
+      this.player.setVelocity(-200, 200)
+      this.player.anims.play('left', true)
+    }
+    else if(this.ArrowRight.right.isDown) {
+      this.player.setVelocity(200, 200)
+      this.player.anims.play('right', true)
+    }
+    if (this.ArrowUp.up.isDown) {
+      this.player.setVelocity(0, -200)
+      this.player.anims.play('turn')
+    }
+    else if(this.ArrowDown.down.isDown) {
+      this.player.setVelocity(200,)
+    }
+
 
   }
 
