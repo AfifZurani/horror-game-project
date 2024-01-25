@@ -6,8 +6,8 @@ import GameOverScene from './GameOverScene'
 const config = {
 	type: Phaser.AUTO,
 	parent: 'app',
-	width: 640,
-	height: 480,
+	width: 720,
+	height: 640,
 	physics: {
 		default: 'arcade',
 		arcade: {
@@ -18,7 +18,7 @@ const config = {
 	scale: {
 		mode: Phaser.Scale.FIT,
 		autoCenter: Phaser.Scale.CENTER_BOTH
-	   }
+	}
 }
 
 export default new Phaser.Game(config)
