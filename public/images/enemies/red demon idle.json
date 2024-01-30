@@ -1,0 +1,111 @@
+{
+  "frames": {
+    "big_demon_idle_anim_f3.png": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 26,
+        "h": 28
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 3,
+        "y": 8,
+        "w": 26,
+        "h": 28
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 36
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "big_demon_idle_anim_f0.png": {
+      "frame": {
+        "x": 26,
+        "y": 0,
+        "w": 23,
+        "h": 30
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 5,
+        "y": 6,
+        "w": 23,
+        "h": 30
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 36
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "big_demon_idle_anim_f1.png": {
+      "frame": {
+        "x": 49,
+        "y": 0,
+        "w": 23,
+        "h": 31
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 4,
+        "y": 5,
+        "w": 23,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 36
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "big_demon_idle_anim_f2.png": {
+      "frame": {
+        "x": 72,
+        "y": 0,
+        "w": 22,
+        "h": 31
+      },
+      "rotated": false,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 5,
+        "y": 5,
+        "w": 22,
+        "h": 31
+      },
+      "sourceSize": {
+        "w": 32,
+        "h": 36
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    }
+  },
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "red demon idle.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 94,
+      "h": 31
+    },
+    "scale": 1
+  }
+}
