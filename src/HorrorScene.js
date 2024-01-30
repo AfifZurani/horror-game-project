@@ -10,10 +10,19 @@ export default class HorrorScene extends Phaser.Scene {
     this.speed = 50
     this.player = undefined
     this.cursor = undefined
+    this.map = undefined
+    this.groundLayer = undefined
+    this.fov = undefined
+    this.demon = undefined
   }
 
   create() {
     // TASK 1: CREATE BACKGROUND IMAGE
+    const gameWidht = this.scale.width * 0.5;
+    const gameHeight = this.scale.height * 0.5;
+    // this.add.image(gameWidht, gameHeight, "backgrounds");
+    const BGD = this.add.image(gameWidht, gameHeight, "backgrounds")
+    BGD.setScrollFactor(0)
 
     // Create map
     this.createMap()
@@ -30,6 +39,7 @@ export default class HorrorScene extends Phaser.Scene {
     this.player.setDepth(0)
 
     // TASK 2: CREATE ENEMIES METHOD
+    this.createEnemies()
   }
 
   update(time) {
@@ -122,5 +132,6 @@ export default class HorrorScene extends Phaser.Scene {
   // Method to create enemies
   createEnemies(){
     // TASK 2: CREATE ENEMIES
+    this.demon=this.physics.add.sprite(80, 200, 'demon_idle')
   }
 }
