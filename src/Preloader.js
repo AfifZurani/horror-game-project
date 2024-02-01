@@ -13,18 +13,9 @@ export default class Preloader extends Phaser.Scene {
       frameHeight: 64,
     })
 
-    // TASK 1: LOAD BACKGROUND IMAGE
     this.load.image('backgrounds', 'images/darkcavebackgrounds.png')
-    // TASK 2: LOAD ENEMIES SPRITESHEET (IDLE AND RUN)
-    this.load.spritesheet('demon_idle', 'images/enemies/red demon idle.png', {
-      frameWidth: 30,
-      frameHeight: 31
-    })
-    this.load.spritesheet('demon_run', 'images/enemies/red demon run.png', {
-      frameWidth: 30,
-      frameHeight: 31
-    })
-    
+    this.load.atlas('demon_idle', 'images/enemies/red demon idle.png', 'images/enemies/red demon idle.json')
+    this.load.atlas('demon_run', 'images/enemies/red demon run.png', 'images/enemies/red demon run.json') 
   }
 
   create(){
