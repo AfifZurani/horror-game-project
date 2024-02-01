@@ -22,6 +22,8 @@ export default class HorrorScene extends Phaser.Scene {
     this.map = undefined
 
     // TASK 1: CREATE HEALTH BAR
+    this.HealthBar = 3
+    this.HealthBarLabel = undefined
 
   }
 
@@ -31,7 +33,7 @@ export default class HorrorScene extends Phaser.Scene {
     // this.add.image(gameWidht, gameHeight, "backgrounds");
     const BGD = this.add.image(gameWidht, gameHeight, "backgrounds")
     BGD.setScrollFactor(0)
-
+    // TASK 1: Create Health Bar
     // Create map
     this.createMap()
 
@@ -48,13 +50,15 @@ export default class HorrorScene extends Phaser.Scene {
 
     this.createDemon()
 
-    // TASK 1: Create Health Bar
+
 
     // TASK 2: Create Demon Collision with Player
-  }
+
+  } 
 
   update(time) {
-    // TASK 3: Update Health Bar
+    // TASK 3: Update Health Bar;
+
 
     this.movePlayer(this.player, time)
     this.createFOV()
@@ -221,18 +225,33 @@ export default class HorrorScene extends Phaser.Scene {
     demons.get(200, 300, 'demon_run').setScale(0.65)
     demons.get(120, 420, 'demon_run').setScale(0.65)
     demons.get(250, 320, 'demon_run').setScale(0.65)
+    demons.children.iterate((demons)=>{
+      // @ts-ignore
+      demons.body.setSize(20,30)
+    })
     this.physics.add.collider(demons, this.wallsLayer, (go, tile) => {
       if (go instanceof Demon)
       {
         go.handleTileCollision(go, tile)
       }
     })
+    this.physics.add.overlap (
+      this.player,
+      demons,
+      this.instantGameOver,
+      null,
+      this
+    )
   }
+
 
   // Method to create health bar
   // TASK 1: CREATE HEALTH BAR
 
   // Method to create demon collision with player
   // TASK 2: CREATE DEMON COLLISION WITH PLAYER
+  instantGameOver() {
+    this.scene.start('game-over-scene')
+  }
 
 }
