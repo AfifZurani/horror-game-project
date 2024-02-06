@@ -50,16 +50,9 @@ export default class HorrorScene extends Phaser.Scene {
 
     this.createDemon()
 
-
-
-    // TASK 2: Create Demon Collision with Player
-
   } 
 
   update(time) {
-    // TASK 3: Update Health Bar;
-
-
     this.movePlayer(this.player, time)
     this.createFOV()
   }
@@ -146,6 +139,19 @@ export default class HorrorScene extends Phaser.Scene {
 
         tile.tint = 0xffffff
         tile.alpha =  alpha
+
+        // if demon within camera view, set it to visible
+        this.demon.children.iterate((demons) => {
+          // @ts-ignore
+          const dx = this.map.worldToTileX(demons.x)
+          // @ts-ignore
+          const dy = this.map.worldToTileY(demons.y)
+          if (dx === x && dy === y)
+          {
+            // @ts-ignore
+            demons.setAlpha(alpha)
+          }
+        })
       }
     )
   }
@@ -217,19 +223,22 @@ export default class HorrorScene extends Phaser.Scene {
   // Method to create demon
   createDemon(){
     // TASK 3: CREATE DEMON OBJECT
-    const demons = this.physics.add.group({
+    this.demon = this.physics.add.group({
       classType: Demon,
     })
     
-    demons.get(100, 150, 'demon_run').setScale(0.65)
-    demons.get(200, 300, 'demon_run').setScale(0.65)
-    demons.get(120, 420, 'demon_run').setScale(0.65)
-    demons.get(250, 320, 'demon_run').setScale(0.65)
-    demons.children.iterate((demons)=>{
+    this.demon.get(100, 150, 'demon_run').setScale(0.65)
+    this.demon.get(200, 300, 'demon_run').setScale(0.65)
+    this.demon.get(120, 420, 'demon_run').setScale(0.65)
+    this.demon.get(250, 320, 'demon_run').setScale(0.65)
+    this.demon.children.iterate((demons)=>{
       // @ts-ignore
       demons.body.setSize(20,30)
+      // @ts-ignore
+      demons.setAlpha(0)
     })
-    this.physics.add.collider(demons, this.wallsLayer, (go, tile) => {
+
+    this.physics.add.collider(this.demon, this.wallsLayer, (go, tile) => {
       if (go instanceof Demon)
       {
         go.handleTileCollision(go, tile)
@@ -237,19 +246,14 @@ export default class HorrorScene extends Phaser.Scene {
     })
     this.physics.add.overlap (
       this.player,
-      demons,
+      this.demon,
       this.instantGameOver,
       null,
       this
     )
   }
 
-
-  // Method to create health bar
-  // TASK 1: CREATE HEALTH BAR
-
-  // Method to create demon collision with player
-  // TASK 2: CREATE DEMON COLLISION WITH PLAYER
+  // Method to instant game over
   instantGameOver() {
     this.scene.start('game-over-scene')
   }
