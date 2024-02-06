@@ -255,7 +255,7 @@ export default class HorrorScene extends Phaser.Scene {
 
   // Method to instant game over
   instantGameOver() {
-    this.scene.start('game-over-scene')
+    this.scene.start('GameOver-Scene')
   }
 
 }
